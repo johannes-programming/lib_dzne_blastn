@@ -1,6 +1,8 @@
 
 import xml.dom.minidom as _minidom
 
+import lib_dzne_filedata as _fd
+
 
 def get_cline(prog, *, query, out, db):
     return [
@@ -23,7 +25,7 @@ def parse(text):
     store['subject-id'] = _get(data, 'BlastOutput', 'BlastOutput_iterations', 'Iteration', 'Iteration_hits', 'Hit', 'Hit_id')
     store['bit-score'] = float(_get(data, 'BlastOutput', 'BlastOutput_iterations', 'Iteration', 'Iteration_hits', 'Hit', 'Hsp', 'Hsp_bit-score'))
     store['evalue'] = float(_get(data, 'BlastOutput', 'BlastOutput_iterations', 'Iteration', 'Iteration_hits', 'Hit', 'Hsp', 'Hsp_evalue'))
-    return store
+    return _fd.TOMLData(store)
 
 def _get(data, *keys, kind=str):
     if data is None:
