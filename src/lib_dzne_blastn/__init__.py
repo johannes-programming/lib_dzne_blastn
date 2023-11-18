@@ -21,9 +21,9 @@ def get_cline(prog, *, query, out, db):
 def parse(text):
     data = _minidom.parseString(text)
     store = dict()
-    store['query-id'] = _get(data, 'BlastOutput', 'BlastOutput_iterations', 'Iteration', 'Iteration_query-def')
-    store['subject-id'] = _get(data, 'BlastOutput', 'BlastOutput_iterations', 'Iteration', 'Iteration_hits', 'Hit', 'Hit_id')
-    store['bit-score'] = float(_get(data, 'BlastOutput', 'BlastOutput_iterations', 'Iteration', 'Iteration_hits', 'Hit', 'Hsp', 'Hsp_bit-score'))
+    store['query_id'] = _get(data, 'BlastOutput', 'BlastOutput_iterations', 'Iteration', 'Iteration_query-def')
+    store['subject_id'] = _get(data, 'BlastOutput', 'BlastOutput_iterations', 'Iteration', 'Iteration_hits', 'Hit', 'Hit_id')
+    store['bit_score'] = float(_get(data, 'BlastOutput', 'BlastOutput_iterations', 'Iteration', 'Iteration_hits', 'Hit', 'Hsp', 'Hsp_bit-score'))
     store['evalue'] = float(_get(data, 'BlastOutput', 'BlastOutput_iterations', 'Iteration', 'Iteration_hits', 'Hit', 'Hsp', 'Hsp_evalue'))
     return _fd.TOMLData(store)
 
